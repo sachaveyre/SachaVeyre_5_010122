@@ -1,20 +1,37 @@
 
  //Recuperation des données du local storage
 let productLocalStorage = JSON.parse(localStorage.getItem("cart"));
+//let idStorage = JSON.parse(localStorage.getItem("orderId"));
+/*
+if (idStorage) {
+    console.log("1"+idStorage);
+}
+else {
+    console.log("2"+idStorage);
+}
+
+*/
+
 
 if (!productLocalStorage) {
      // Ajout des balises titre et cart du html
     const titleCart = document.querySelector("h1");
     const sectionCart = document.querySelector(".cart");
-
+    
     titleCart.innerHTML = "Vous n'avez aucun produit dans votre panier !";
     sectionCart.style.display = "none";
-
+    
 } else {
     // Creation d'une boucle pour les differents produits du local storage avec incrémentation +1
     for (let i=0; i < productLocalStorage.length; i++) {
 
         // Inseretion des informations produits dans "article"
+
+       
+
+        
+
+
         let productArticle = document.createElement("article");
         document.querySelector("#cart__items").appendChild(productArticle);
         productArticle.className = "cart__item";
@@ -304,23 +321,40 @@ function postForm() {
         .then(data => {
         localStorage.setItem('orderId', data.orderId);
         document.location.href = 'confirmation.html?id='+ data.orderId;
+        console.log(productLocalStorage)
+        const orderIdElement = document.getElementById("orderId")
+        orderIdElement.innerHTML = data.orderId;
+        console.log(orderIdElement);
       });
       
-  
   }); 
   } 
 // Utilisation de la fonction postForm précedement créée
   postForm();
-  
-// Creation de la fonction permettant de recuperer l'order ID depuis le local storage sur la nouvelle page
-function getOrderID(){
-    const idCmd = document.getElementById("orderId");
-    console.log(idCmd)
-    idCmd.innerText = localStorage.getItem("orderId");
-    console.log(localStorage.getItem("orderId"))
-    
-     // Vidage du local storage pour supprimer les infos de la commande
-    localStorage.clear();
-}
 
-getOrderID();
+  console.log(localStorage)
+  console.log(localStorage.cart)
+  console.log(localStorage.orderId)
+  document.querySelector("orderId").innerHTML = localStorage;
+
+  const orderId = getOrderId()
+  displayOrderId(orderId)
+  removeAllCache()
+  // lorsqu'on clique sur order la fonction getOrder s execute
+  order.addEventListener('click', getOrderId())
+  function getOrderId() {
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+    return urlParams.get("orderId")
+  }
+  console.log(getOrderId)
+  
+  function displayOrderId(orderId) {
+    const orderIdElement = document.getElementById("orderId")
+    orderIdElement.textContent = localStorage.orderId;
+  }
+  
+  function removeAllCache() {     //supprimer le cache total une fois la commande validée
+    const cache = window.localStorage
+    cache.clear()
+  }
