@@ -311,6 +311,7 @@ function postForm() {
   } 
 // Utilisation de la fonction postForm précedement créée
   postForm();
+  
 // Creation de la fonction permettant de recuperer l'order ID depuis le local storage sur la nouvelle page
 function getOrderID(){
     const idCmd = document.getElementById("orderId");
