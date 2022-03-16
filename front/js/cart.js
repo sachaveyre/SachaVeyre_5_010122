@@ -27,17 +27,12 @@ if (!productLocalStorage) {
 
         // Inseretion des informations produits dans "article"
 
-       
-
-        
-
-
         let productArticle = document.createElement("article");
         document.querySelector("#cart__items").appendChild(productArticle);
         productArticle.className = "cart__item";
         productArticle.setAttribute("data-id", productLocalStorage[i].idKanap);
 
-        // Inseretion des informations produits dans "div"
+        // Insertion des informations produits dans "div"
         let productDivImg = document.createElement("div");
         productArticle.appendChild(productDivImg);
         productDivImg.className = "cart__item__img";
