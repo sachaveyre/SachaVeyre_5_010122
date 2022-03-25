@@ -31,6 +31,7 @@ async function getArticle() {
             color.innerHTML = product.colors[i];
             colorsProduct.appendChild(color);
         }  
+        
     });          
 }
 
@@ -43,7 +44,7 @@ function addToCart() {
     const colorChoice = document. querySelector("#colors");
     const quantityChoice = document.querySelector("#quantity");
 // Ajout des quantités avec quantité inférieur a 100 et color non égale à 0 car 0 = choisissez une couleur
-    if (quantityChoice.value > 0 && quantityChoice.value <=100 && quantityChoice.value != 0 && colorChoice.value != 0) { 
+    if (quantityChoice.value > 0 && quantityChoice.value <=10 && quantityChoice.value != 0 && colorChoice.value != 0) { 
 
         if (localStorage.getItem("cart")) {
     
@@ -106,7 +107,7 @@ function addToCart() {
                 }
 
         } else {
-
+            
             let productCart = [];
 
             let idKanap = idProduct;
